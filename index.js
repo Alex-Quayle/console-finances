@@ -111,7 +111,33 @@ var averageTotal = 0;
 for(let i = 0; i < average.length; i++) {
   averageTotal += average[i];
 }
+
 var profitChangeTotal = averageTotal / (average.length)
 var profitChangeTotal = profitChangeTotal.toFixed(2);
 
-console.log("Financial Analysis\n----------------------------\nTotal Months: " + totalMonths + "\nTotal: " + netTotal + "\nAverage Change: " + profitChangeTotal);
+var highestProfit = 0;
+for (let i = 1; i < finances.length; i++) {
+  const currentProfit = finances[i][1];
+  const lastProfit = finances[i - 1][1];
+  let value = currentProfit - lastProfit;
+  if(value > highestProfit) {
+  highestProfit = value;
+  highestProfitMonth = finances[i][0]
+  }
+}
+
+var lowestProfit = 0;
+for (let i = 1; i < finances.length; i++) {
+  const currentProfit = finances[i][1];
+  const lastProfit = finances[i - 1][1];
+  let value = currentProfit - lastProfit;
+  if(value < lowestProfit) {
+  lowestProfit = value;
+  lowestProfitMonth = finances[i][0]
+  }
+}
+
+
+console.log("Financial Analysis\n----------------------------\nTotal Months: " + totalMonths + "\nTotal: " + netTotal + "\nAverage Change: " + profitChangeTotal + "\nGreatest Increase in Profits/Losses: " + highestProfitMonth + "(" + highestProfit + ")" + "\nGreatest Decrease in Profits/Losses: " + lowestProfitMonth + "(" + lowestProfit + ")");
+
+
