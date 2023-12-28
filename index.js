@@ -86,7 +86,15 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
 var totalMonths = 0;
 for(let i = 0; i < finances.length; i++) {
   totalMonths = totalMonths + 1;
+}
+
+var netTotal = 0;
+for (let i = 0; i < finances.length; i++) {
+  // Creates a reference to the finances array
+  const arr = finances[i];
+  netTotal = netTotal + arr[1];
 }
