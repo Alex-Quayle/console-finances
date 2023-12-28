@@ -87,45 +87,59 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+// Uses a for loop to tally the total number of months in the array
 var totalMonths = 0;
 for(let i = 0; i < finances.length; i++) {
   totalMonths += 1;
 }
 
+// Adds the total profit/losses into one number
 var netTotal = 0;
 for (let i = 0; i < finances.length; i++) {
   // Creates a reference to the finances array
   const arr = finances[i];
+  // Accesses the second part of the array, adding it to the total
   netTotal += arr[1];
 }
 
 var average = [];
 // Creates a new array with the changes month on month
 for (let i = 1; i < finances.length; i++) {
+  // Keeps track of the current profit/loss month being assessed
   const currentProfit = finances[i][1];
+  // Keeps hold of the month before the current iteration
   const lastProfit = finances[i - 1][1];
+  // Calculates the difference between the current month's profit/less with the previous month
   let profitChange = currentProfit - lastProfit;
+  // Adds the difference to a new array called 'average'
   average.push(profitChange);
 }
 var averageTotal = 0;
+  // Adds together the contents of the 'average' array
 for(let i = 0; i < average.length; i++) {
   averageTotal += average[i];
 }
-
+// Calculates the average change
 var profitChangeTotal = averageTotal / (average.length)
+// Rounds the average change to 2 decimal places
 var profitChangeTotal = profitChangeTotal.toFixed(2);
 
+// Initialises a variable that holds the biggest change over a period
 var highestProfit = 0;
 for (let i = 1; i < finances.length; i++) {
+  // Utilises the solution used to calculate the average, holding the current and previous month
   const currentProfit = finances[i][1];
   const lastProfit = finances[i - 1][1];
   let value = currentProfit - lastProfit;
+  // Checks whether the current months being checked is a greater value than what is currently stored
   if(value > highestProfit) {
+  // Stores the number and month separately so they can be displayed independent of one another
   highestProfit = value;
   highestProfitMonth = finances[i][0]
   }
 }
 
+// The same method of finding the highest profit, with the difference of checking if the value is LESS than what is currently being held
 var lowestProfit = 0;
 for (let i = 1; i < finances.length; i++) {
   const currentProfit = finances[i][1];
@@ -136,7 +150,6 @@ for (let i = 1; i < finances.length; i++) {
   lowestProfitMonth = finances[i][0]
   }
 }
-
 
 console.log("Financial Analysis\n----------------------------\nTotal Months: " + totalMonths + "\nTotal: " + netTotal + "\nAverage Change: " + profitChangeTotal + "\nGreatest Increase in Profits/Losses: " + highestProfitMonth + "(" + highestProfit + ")" + "\nGreatest Decrease in Profits/Losses: " + lowestProfitMonth + "(" + lowestProfit + ")");
 
