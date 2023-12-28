@@ -89,12 +89,29 @@ var finances = [
 
 var totalMonths = 0;
 for(let i = 0; i < finances.length; i++) {
-  totalMonths = totalMonths + 1;
+  totalMonths += 1;
 }
 
 var netTotal = 0;
 for (let i = 0; i < finances.length; i++) {
   // Creates a reference to the finances array
   const arr = finances[i];
-  netTotal = netTotal + arr[1];
+  netTotal += arr[1];
 }
+
+var average = [];
+// Creates a new array with the changes month on month
+for (let i = 1; i < finances.length; i++) {
+  const currentProfit = finances[i][1];
+  const lastProfit = finances[i - 1][1];
+  let profitChange = currentProfit - lastProfit;
+  average.push(profitChange);
+}
+var averageTotal = 0;
+for(let i = 0; i < average.length; i++) {
+  averageTotal += average[i];
+}
+var profitChangeTotal = averageTotal / (average.length)
+var profitChangeTotal = profitChangeTotal.toFixed(2);
+
+console.log("Financial Analysis\n----------------------------\nTotal Months: " + totalMonths + "\nTotal: " + netTotal + "\nAverage Change: " + profitChangeTotal);
